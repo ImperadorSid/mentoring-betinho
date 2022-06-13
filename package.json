@@ -1,0 +1,30 @@
+{
+  "name": "betinho",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:w": "test --watch"
+  },
+  "dependencies": {
+    "@styled-system/css": "^5.1.5",
+    "axios": "^0.24.0",
+    "next": "12.0.7",
+    "prop-types": "^15.7.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.3",
+    "styled-system": "^5.1.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "babel-plugin-styled-components": "^2.0.2",
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7",
+    "jest": "^27.4.7"
+  }
+}
