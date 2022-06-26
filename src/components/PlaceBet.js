@@ -28,29 +28,35 @@ const PlaceBet = ({
     )
   }
 
-  const selectedBetEventsId = selectedBet.events.map(event => event.id)
+  const selectedBetEventsId = selectedBet.events.map((event) => event.id)
 
-  const selectedBetEvents = events.filter(
-    (event) => selectedBetEventsId.includes(event.id)
+  const selectedBetEvents = events.filter((event) =>
+    selectedBetEventsId.includes(event.id)
   )
   const allCompetitors = selectedBetEvents.reduce(
     (acc, event) => [...acc, ...event.competitors],
-    [],
+    []
   )
-  const selectedBetCategoriesIds = selectedBetEvents.map((event) => event.categoryId)
-  const selectedBetCategories = categories.filter(
-    (category) => selectedBetCategoriesIds.includes(category.id)
+  const selectedBetCategoriesIds = selectedBetEvents.map(
+    (event) => event.categoryId
+  )
+  const selectedBetCategories = categories.filter((category) =>
+    selectedBetCategoriesIds.includes(category.id)
   )
   const selectedBetCategoriesWithEvents = selectedBetCategories.map(
     (category) => ({
       ...category,
-      events: selectedBetEvents.filter((event) => event.categoryId === category.id),
-      betEvents: selectedBet.events.filter((event) => event.categoryId === category.id),
-    }),
+      events: selectedBetEvents.filter(
+        (event) => event.categoryId === category.id
+      ),
+      betEvents: selectedBet.events.filter(
+        (event) => event.categoryId === category.id
+      ),
+    })
   )
   const betEventsOrderedByCategories = selectedBetCategoriesWithEvents.reduce(
     (acc, category) => [...acc, ...category.betEvents],
-    [],
+    []
   )
 
   const handleEnter = (event) => {
@@ -68,7 +74,7 @@ const PlaceBet = ({
           {selectedBetCategoriesWithEvents.map((selectedBetCategory, index) => {
             return (
               <Fragment key={index}>
-                <Heading  fontSize='5' fontWeight='2' mt={index !== 0 ? 4 : 0}>
+                <Heading fontSize='5' fontWeight='2' mt={index !== 0 ? 4 : 0}>
                   <Text as='span' mr='2'>
                     {selectedBetCategory.icon}
                   </Text>{' '}
@@ -76,7 +82,8 @@ const PlaceBet = ({
                 </Heading>
 
                 {selectedBetCategory.events.map((betEvent, index) => {
-                  const [selectedBetHome, selectedBetAway] = betEvent.competitors
+                  const [selectedBetHome, selectedBetAway] =
+                    betEvent.competitors
 
                   return (
                     <Flex
@@ -95,7 +102,7 @@ const PlaceBet = ({
                         ml='2'
                         css={css({ cursor: 'pointer' })}
                         onClick={() => removeBetEvent(betEvent)}
-                        title="Remove this bet"
+                        title='Remove this bet'
                       >
                         x
                       </Text>
@@ -109,18 +116,23 @@ const PlaceBet = ({
 
         <Box>
           {betEventsOrderedByCategories.map((betEvent, index) => {
-            const category = categories.find((category) => category.id === betEvent.categoryId)
+            const category = categories.find(
+              (category) => category.id === betEvent.categoryId
+            )
 
             return (
               <Flex
                 key={index}
                 justifyContent='space-between'
-                mt={(index === 0) ? 5 : 0}
+                mt={index === 0 ? 5 : 0}
               >
                 <Text fontSize='5'>
-                  {category.icon}
-                  {' '}
-                  {allCompetitors.find((competitor) => competitor.id === betEvent.competitorId).name}
+                  {category.icon}{' '}
+                  {
+                    allCompetitors.find(
+                      (competitor) => competitor.id === betEvent.competitorId
+                    ).name
+                  }
                 </Text>
 
                 <Text fontSize='5' color='green.100'>
@@ -153,10 +165,12 @@ const PlaceBet = ({
                 Potencial Gain
               </Text>{' '}
               {parseFloat(
-                selectedBet.stake * (
-                  selectedBet.events.reduce((acc, event) => (acc + event.odd), 0) *
-                  (selectedBet.events.length === 1 ? 1 : 1.25)
-                )
+                selectedBet.stake *
+                  (selectedBet.events.reduce(
+                    (acc, event) => acc + event.odd,
+                    0
+                  ) *
+                    (selectedBet.events.length === 1 ? 1 : 1.25))
               ).toFixed(2)}
             </Text>
           </Flex>
