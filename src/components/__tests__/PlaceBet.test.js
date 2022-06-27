@@ -42,7 +42,7 @@ describe('<PlaceBet />', () => {
     it('renders selected competitor name', () => {
       const { getByText } = setup({ selectedBet })
 
-      expect(getByText('Barcelona')).toBeInTheDocument()
+      expect(getByText(/Barcelona/)).toBeInTheDocument()
     })
 
     it('renders selected competitor odd', () => {

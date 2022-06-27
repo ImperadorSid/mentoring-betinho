@@ -3,9 +3,7 @@ export const create = (factory, attrs) => factories[factory](attrs)
 const factories = {
   bet: (attrs) => ({
     stake: 0,
-    eventId: 1,
-    competitorId: 2,
-    odd: 2.8,
+    events: [{ id: 1, competitorId: 1, odd: 2.8, categoryId: 1 }],
     ...attrs,
   }),
   categories: () => [
