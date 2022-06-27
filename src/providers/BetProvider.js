@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types'
 import { useAccount } from './AccountProvider'
 import { useEvents } from './EventsProvider'
+import { nanoid } from 'nanoid'
 
 const BetContext = createContext(null)
 
@@ -25,6 +26,7 @@ const BetProvider = ({ children }) => {
       const odd = event.odds[competitor.type]
 
       setBet({
+        id: nanoid(),
         stake: 0,
         events: [
           ...(bet && bet.events.filter((event) => event.id !== eventId) || []),
