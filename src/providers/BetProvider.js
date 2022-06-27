@@ -29,13 +29,14 @@ const BetProvider = ({ children }) => {
         id: nanoid(),
         stake: 0,
         events: [
-          ...(bet && bet.events.filter((event) => event.id !== eventId) || []),
+          ...((bet && bet.events.filter((event) => event.id !== eventId)) ||
+            []),
           {
             id: eventId,
             competitorId,
             odd,
             categoryId: event.categoryId,
-          }
+          },
         ],
       })
     },
@@ -53,16 +54,19 @@ const BetProvider = ({ children }) => {
   )
 
   const removeSelectedBet = useCallback(() => setBet(null), [setBet])
-  const removeSelectedBetEvent = useCallback((param) => {
-    if (bet.events.length === 1) {
-      setBet(null)
-    } else {
-      setBet({
-        ...bet,
-        events: bet.events.filter((event) => event.id !== param.id)
-      })
-    }
-  }, [setBet, bet])
+  const removeSelectedBetEvent = useCallback(
+    (param) => {
+      if (bet.events.length === 1) {
+        setBet(null)
+      } else {
+        setBet({
+          ...bet,
+          events: bet.events.filter((event) => event.id !== param.id),
+        })
+      }
+    },
+    [setBet, bet]
+  )
 
   const placeBet = useCallback(async () => {
     if (bet.stake <= 0) {
@@ -97,7 +101,14 @@ const BetProvider = ({ children }) => {
       removeSelectedBetEvent,
       placeBet,
     }),
-    [bet, selectBet, changeBetStake, removeSelectedBet, placeBet, removeSelectedBetEvent]
+    [
+      bet,
+      selectBet,
+      changeBetStake,
+      removeSelectedBet,
+      placeBet,
+      removeSelectedBetEvent,
+    ]
   )
 
   return <BetContext.Provider value={value}>{children}</BetContext.Provider>

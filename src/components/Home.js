@@ -19,8 +19,14 @@ const Home = () => {
   const { events, getEvents } = useEvents()
   const { account, getAccount } = useAccount()
   const { categories, getCategories } = useCategories()
-  const { bet, selectBet, changeBetStake, removeSelectedBet, removeSelectedBetEvent, placeBet } =
-    useBet()
+  const {
+    bet,
+    selectBet,
+    changeBetStake,
+    removeSelectedBet,
+    removeSelectedBetEvent,
+    placeBet,
+  } = useBet()
 
   const [status, setStatus] = useState('loading')
 
