@@ -14,11 +14,7 @@ const accountSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getAccount.fulfilled, (state, action) => action.payload)
-
-    builder.addCase(addActiveBet.fulfilled, (state, { payload }) => {
-      state.balance.amount -= payload.stake
-      state.activeBets.push(payload)
-    })
+    builder.addCase(addActiveBet.fulfilled, (state, action) => action.payload)
   }
 })
 
@@ -37,11 +33,17 @@ const getAccount = createAsyncThunk(
 
 const addActiveBet = createAsyncThunk(
   `${sliceName}/addActiveBet`,
-  async (bet) => {
+  async (bet, { getState }) => {
     try {
-      await createActiveBet(bet)
+      const { account } = getState()
+      const newAccount = {
+        balance: { amount: account.balance.amount - bet.stake },
+        activeBets: [...account.activeBets, bet],
+      }
 
-      return bet
+      await createActiveBet(newAccount)
+
+      return newAccount
     } catch (error) {
       console.error(`[${sliceName} store][addActiveBet]: ${error.message}`)
 
