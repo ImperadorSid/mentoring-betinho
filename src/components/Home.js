@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useBet } from '../providers/BetProvider'
-import { useEvents } from '../providers/EventsProvider'
+import { useEvents } from '../store/events'
 import { useAccount } from '../providers/AccountProvider'
 import { useCategories } from '../store/categories'
 import {

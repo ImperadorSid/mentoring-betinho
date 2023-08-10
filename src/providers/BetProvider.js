@@ -8,7 +8,7 @@ import {
 
 import PropTypes from 'prop-types'
 import { useAccount } from './AccountProvider'
-import { useEvents } from './EventsProvider'
+import { useEvents } from '../store/events'
 import { nanoid } from 'nanoid'
 
 const BetContext = createContext(null)
