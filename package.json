@@ -10,6 +10,7 @@
     "test:w": "test --watch"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "@styled-system/css": "^5.1.5",
     "axios": "^0.24.0",
     "nanoid": "4.0.0",
@@ -17,6 +18,7 @@
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-redux": "^8.1.2",
     "styled-components": "^5.3.3",
     "styled-system": "^5.1.5"
   },
