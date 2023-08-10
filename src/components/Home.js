@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useBet } from '../providers/BetProvider'
 import { useEvents } from '../providers/EventsProvider'
 import { useAccount } from '../providers/AccountProvider'
-import { useCategories } from '../providers/CategoriesProvider'
+import { useCategories } from '../store/categories'
 import {
   Box,
   Flex,
