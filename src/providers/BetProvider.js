@@ -7,7 +7,7 @@ import {
 } from 'react'
 
 import PropTypes from 'prop-types'
-import { useAccount } from './AccountProvider'
+import { useAccount } from '../store/account'
 import { useEvents } from '../store/events'
 import { nanoid } from 'nanoid'
 

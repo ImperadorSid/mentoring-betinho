@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useBet } from '../providers/BetProvider'
 import { useEvents } from '../store/events'
-import { useAccount } from '../providers/AccountProvider'
+import { useAccount } from '../store/account'
 import { useCategories } from '../store/categories'
 import {
   Box,

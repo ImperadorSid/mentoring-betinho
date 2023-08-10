@@ -22,8 +22,13 @@ const fetchEvents = async () => {
   return events
 }
 
+const createActiveBet = async (newAccount) => {
+  await api.post('account', newAccount)
+}
+
 export {
   fetchAccount,
   fetchCategories,
-  fetchEvents
+  fetchEvents,
+  createActiveBet
 }
