@@ -1,32 +1,28 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchEvents } from '../services/apiService'
 import { useDispatch, useSelector } from 'react-redux'
 
-const reducerName = 'events'
+const sliceName = 'events'
 
-const initialState = {
-  value: []
-}
+const initialState = []
 
 const eventsSlice = createSlice({
-  name: reducerName,
+  name: sliceName,
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getEvents.fulfilled, (state, action) => {
-      state.value = action.payload
-    })
+    builder.addCase(getEvents.fulfilled, (state, action) => action.payload)
   }
 })
 
 const getEvents = createAsyncThunk(
-  `${reducerName}/getEvents`,
+  `${sliceName}/getEvents`,
   () => {
     try {
       return fetchEvents()
     } catch (error) {
-      console.error(`[events store][getEvents]: ${error.message}`)
+      console.error(`[${sliceName} store][getEvents]: ${error.message}`)
 
-      return []
+      throw error
     }
   }
 )
@@ -35,7 +31,7 @@ const useEvents = () => {
   const dispatch = useDispatch()
 
   return {
-    events: useSelector((state) => state.events.value),
+    events: useSelector((state) => state.events),
 
     getEvents: () => dispatch(getEvents())
   }

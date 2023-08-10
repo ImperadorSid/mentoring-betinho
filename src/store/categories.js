@@ -2,31 +2,27 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchCategories } from '../services/apiService'
 import { useDispatch, useSelector } from 'react-redux'
 
-const reducerName = 'categories'
+const sliceName = 'categories'
 
-const initialState = {
-  value: []
-}
+const initialState = []
 
 const categoriesSlice = createSlice({
-  name: reducerName,
+  name: sliceName,
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getCategories.fulfilled, (state, action) => {
-      state.value = action.payload
-    })
+    builder.addCase(getCategories.fulfilled, (state, action) => action.payload)
   }
 })
 
 const getCategories = createAsyncThunk(
-  `${reducerName}/getCategories`,
+  `${sliceName}/getCategories`,
   () => {
     try {
       return fetchCategories()
     } catch (error) {
-      console.error(`[categories store][getCategories]: ${error.message}`)
+      console.error(`[${sliceName} store][getCategories]: ${error.message}`)
 
-      return []
+      throw error
     }
   }
 )
@@ -35,7 +31,7 @@ const useCategories = () => {
   const dispatch = useDispatch()
 
   return {
-    categories: useSelector((state) => state.categories.value),
+    categories: useSelector((state) => state.categories),
 
     getCategories: () => dispatch(getCategories()),
   }
