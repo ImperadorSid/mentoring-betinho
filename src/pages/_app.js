@@ -38,7 +38,6 @@ const BetinhoApp = ({ Component, pageProps }) => {
   return (
     <>
       <GlobalStyle />
-
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
