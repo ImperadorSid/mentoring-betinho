@@ -7,7 +7,7 @@ import {
 } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import { useContainer } from './ContainerProvider'
+import { fetchAccount } from '../services/apiService'
 
 const AccountContext = createContext(null)
 
@@ -17,11 +17,9 @@ const AccountProvider = ({ children }) => {
     activeBets: [],
   })
 
-  const { accountApiService } = useContainer()
-
   const getAccount = useCallback(async () => {
     try {
-      const payload = await accountApiService.getAccount()
+      const payload = await fetchAccount()
 
       setAccount(payload)
     } catch (error) {
@@ -29,7 +27,7 @@ const AccountProvider = ({ children }) => {
 
       throw error
     }
-  }, [setAccount, accountApiService])
+  }, [setAccount])
 
   const addActiveBet = useCallback(
     async (bet) => {
