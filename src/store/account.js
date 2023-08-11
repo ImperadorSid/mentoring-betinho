@@ -55,11 +55,14 @@ const addActiveBet = createAsyncThunk(
 const useAccount = () => {
   const dispatch = useDispatch()
 
-  return {
-    account: useSelector((state) => state.account),
+  const account = useSelector((state) => state.account)
+  const getAccount = () => dispatch(getAccount())
+  const addActiveBet = (bet) => dispatch(addActiveBet(bet))
 
-    getAccount: () => dispatch(getAccount()),
-    addActiveBet: (bet) => dispatch(addActiveBet(bet)),
+  return {
+    account,
+    getAccount,
+    addActiveBet
   }
 }
 

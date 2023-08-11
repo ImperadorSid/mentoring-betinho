@@ -30,10 +30,12 @@ const getCategories = createAsyncThunk(
 const useCategories = () => {
   const dispatch = useDispatch()
 
-  return {
-    categories: useSelector((state) => state.categories),
+  const categories = useSelector((state) => state.categories)
+  const getCategories = () => dispatch(getCategories())
 
-    getCategories: () => dispatch(getCategories()),
+  return {
+    categories,
+    getCategories
   }
 }
 

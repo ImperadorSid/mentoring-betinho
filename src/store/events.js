@@ -30,10 +30,12 @@ const getEvents = createAsyncThunk(
 const useEvents = () => {
   const dispatch = useDispatch()
 
-  return {
-    events: useSelector((state) => state.events),
+  const events = useSelector((state) => state.events)
+  const getEvents = () => dispatch(getEvents())
 
-    getEvents: () => dispatch(getEvents())
+  return {
+    events,
+    getEvents
   }
 }
 
