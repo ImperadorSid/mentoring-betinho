@@ -9,15 +9,4 @@ import Events from './Events'
 import PlaceBet from './PlaceBet'
 import Home from './Home'
 
-export {
-  Box,
-  Flex,
-  Text,
-  Heading,
-  Container,
-  Button,
-  Input,
-  Events,
-  PlaceBet,
-  Home,
-}
+export { Box, Flex, Text, Heading, Container, Button, Input, Events, PlaceBet, Home }

@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 
 import PropTypes from 'prop-types'
 import { useAccount } from './AccountProvider'
@@ -29,8 +23,7 @@ const BetProvider = ({ children }) => {
         id: nanoid(),
         stake: 0,
         events: [
-          ...((bet && bet.events.filter((event) => event.id !== eventId)) ||
-            []),
+          ...((bet && bet.events.filter((event) => event.id !== eventId)) || []),
           {
             id: eventId,
             competitorId,
@@ -101,14 +94,7 @@ const BetProvider = ({ children }) => {
       removeSelectedBetEvent,
       placeBet,
     }),
-    [
-      bet,
-      selectBet,
-      changeBetStake,
-      removeSelectedBet,
-      placeBet,
-      removeSelectedBetEvent,
-    ]
+    [bet, selectBet, changeBetStake, removeSelectedBet, placeBet, removeSelectedBetEvent]
   )
 
   return <BetContext.Provider value={value}>{children}</BetContext.Provider>

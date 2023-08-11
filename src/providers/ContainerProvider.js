@@ -5,11 +5,7 @@ import container from '../container'
 const ContainerContext = createContext(null)
 
 const ContainerProvider = ({ children }) => {
-  return (
-    <ContainerContext.Provider value={container}>
-      {children}
-    </ContainerContext.Provider>
-  )
+  return <ContainerContext.Provider value={container}>{children}</ContainerContext.Provider>
 }
 
 ContainerProvider.propTypes = {
