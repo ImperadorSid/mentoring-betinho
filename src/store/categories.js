@@ -11,21 +11,18 @@ const categoriesSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getCategories.fulfilled, (state, action) => action.payload)
-  }
+  },
 })
 
-const getCategories = createAsyncThunk(
-  `${sliceName}/getCategories`,
-  () => {
-    try {
-      return fetchCategories()
-    } catch (error) {
-      console.error(`[${sliceName} store][getCategories]: ${error.message}`)
+const getCategories = createAsyncThunk(`${sliceName}/getCategories`, () => {
+  try {
+    return fetchCategories()
+  } catch (error) {
+    console.error(`[${sliceName} store][getCategories]: ${error.message}`)
 
-      throw error
-    }
+    throw error
   }
-)
+})
 
 const useCategories = () => {
   const dispatch = useDispatch()
@@ -35,7 +32,7 @@ const useCategories = () => {
 
   return {
     categories,
-    getCategories
+    getCategories,
   }
 }
 

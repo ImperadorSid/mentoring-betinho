@@ -10,7 +10,7 @@ const store = configureStore({
     events: eventsReducer,
     account: accountReducer,
     bet: betReducer,
-  }
+  },
 })
 
 export default store

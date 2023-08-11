@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
 
 const fetchAccount = async () => {
@@ -26,9 +26,4 @@ const createActiveBet = async (newAccount) => {
   await api.post('account', newAccount)
 }
 
-export {
-  fetchAccount,
-  fetchCategories,
-  fetchEvents,
-  createActiveBet
-}
+export { fetchAccount, fetchCategories, fetchEvents, createActiveBet }

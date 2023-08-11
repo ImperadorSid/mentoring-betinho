@@ -21,17 +21,12 @@ const betSlice = createSlice({
         categoryId: event.categoryId,
       }
 
-      const currentSelectedEvents = state
-        ? state.events.filter((e) => e.id !== event.id)
-        : []
+      const currentSelectedEvents = state ? state.events.filter((e) => e.id !== event.id) : []
 
       return {
         id: nanoid(),
         stake: 0,
-        events: [
-          ...currentSelectedEvents,
-          newEvent,
-        ],
+        events: [...currentSelectedEvents, newEvent],
       }
     },
 

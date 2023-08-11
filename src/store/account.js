@@ -6,7 +6,7 @@ const sliceName = 'account'
 
 const initialState = {
   balance: { amount: 0 },
-  activeBets: []
+  activeBets: [],
 }
 
 const accountSlice = createSlice({
@@ -15,42 +15,36 @@ const accountSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAccount.fulfilled, (state, action) => action.payload)
     builder.addCase(addActiveBet.fulfilled, (state, action) => action.payload)
+  },
+})
+
+const getAccount = createAsyncThunk(`${sliceName}/getAccount`, () => {
+  try {
+    return fetchAccount()
+  } catch (error) {
+    console.error(`[${sliceName} store][getAccount]: ${error.message}`)
+
+    throw error
   }
 })
 
-const getAccount = createAsyncThunk(
-  `${sliceName}/getAccount`,
-  () => {
-    try {
-      return fetchAccount()
-    } catch (error) {
-      console.error(`[${sliceName} store][getAccount]: ${error.message}`)
-
-      throw error
+const addActiveBet = createAsyncThunk(`${sliceName}/addActiveBet`, async (bet, { getState }) => {
+  try {
+    const { account } = getState()
+    const newAccount = {
+      balance: { amount: account.balance.amount - bet.stake },
+      activeBets: [...account.activeBets, bet],
     }
+
+    await createActiveBet(newAccount)
+
+    return newAccount
+  } catch (error) {
+    console.error(`[${sliceName} store][addActiveBet]: ${error.message}`)
+
+    throw error
   }
-)
-
-const addActiveBet = createAsyncThunk(
-  `${sliceName}/addActiveBet`,
-  async (bet, { getState }) => {
-    try {
-      const { account } = getState()
-      const newAccount = {
-        balance: { amount: account.balance.amount - bet.stake },
-        activeBets: [...account.activeBets, bet],
-      }
-
-      await createActiveBet(newAccount)
-
-      return newAccount
-    } catch (error) {
-      console.error(`[${sliceName} store][addActiveBet]: ${error.message}`)
-
-      throw error
-    }
-  }
-)
+})
 
 const useAccount = () => {
   const dispatch = useDispatch()
@@ -62,7 +56,7 @@ const useAccount = () => {
   return {
     account,
     getAccount,
-    addActiveBet
+    addActiveBet,
   }
 }
 
