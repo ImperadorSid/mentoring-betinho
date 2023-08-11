@@ -14,8 +14,7 @@ const Button = styled(Text)(
     textDecoration: 'none',
     cursor: 'pointer',
     outline: 'none',
-    transition:
-      'background-color .2s ease, border-color .2s ease, opacity .2s ease',
+    transition: 'background-color .2s ease, border-color .2s ease, opacity .2s ease',
     ':disabled': { opacity: 0.6, cursor: 'not-allowed', pointerEvents: 'none' },
   },
   variant({
