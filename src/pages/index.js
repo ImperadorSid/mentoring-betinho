@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <Head>
         <title>Betinho</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <AllProviders>

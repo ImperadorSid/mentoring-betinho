@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useMemo,
-  useState,
-  useContext,
-  useCallback,
-} from 'react'
+import { createContext, useMemo, useState, useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 
@@ -15,9 +9,7 @@ const CategoriesProvider = ({ children }) => {
 
   const getCategories = useCallback(async () => {
     try {
-      const { data: categories } = await axios.get(
-        'http://localhost:3001/categories'
-      )
+      const { data: categories } = await axios.get('http://localhost:3001/categories')
 
       setCategories(categories)
     } catch (error) {
@@ -35,11 +27,7 @@ const CategoriesProvider = ({ children }) => {
     [categories, getCategories]
   )
 
-  return (
-    <CategoriesContext.Provider value={value}>
-      {children}
-    </CategoriesContext.Provider>
-  )
+  return <CategoriesContext.Provider value={value}>{children}</CategoriesContext.Provider>
 }
 
 CategoriesProvider.propTypes = {
@@ -50,9 +38,7 @@ export const useCategories = () => {
   const categoriesContext = useContext(CategoriesContext)
 
   if (!categoriesContext) {
-    throw new Error(
-      'useCategories was called without being nested in CategoriesProvider'
-    )
+    throw new Error('useCategories was called without being nested in CategoriesProvider')
   }
 
   return categoriesContext

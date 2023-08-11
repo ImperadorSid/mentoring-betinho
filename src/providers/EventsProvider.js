@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useMemo,
-} from 'react'
+import { createContext, useContext, useState, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 
@@ -33,9 +27,7 @@ const EventsProvider = ({ children }) => {
     [events, getEvents]
   )
 
-  return (
-    <EventsContext.Provider value={value}>{children}</EventsContext.Provider>
-  )
+  return <EventsContext.Provider value={value}>{children}</EventsContext.Provider>
 }
 
 EventsProvider.propTypes = {
@@ -46,9 +38,7 @@ export const useEvents = () => {
   const eventsContext = useContext(EventsContext)
 
   if (!eventsContext) {
-    throw new Error(
-      'useEvents was called without being nested in EventsProvider'
-    )
+    throw new Error('useEvents was called without being nested in EventsProvider')
   }
 
   return eventsContext

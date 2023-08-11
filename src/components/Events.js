@@ -28,23 +28,23 @@ const Events = ({ account, events, categories, selectBet }) => {
           })}
         >
           <Flex
-            as='header'
-            alignItems='center'
-            justifyContent='space-between'
-            px='4'
-            py='3'
-            borderRadius='12px 12px 0 0'
-            bg='blue'
+            as="header"
+            alignItems="center"
+            justifyContent="space-between"
+            px="4"
+            py="3"
+            borderRadius="12px 12px 0 0"
+            bg="blue"
           >
-            <Heading fontSize='6' fontWeight='2'>
-              <Text as='span' mr='2'>
+            <Heading fontSize="6" fontWeight="2">
+              <Text as="span" mr="2">
                 {category.icon}
               </Text>{' '}
               {category.name}
             </Heading>
 
-            <Flex justifyContent='center' width='160px'>
-              <Text fontSize='4' color='#8697a2'>
+            <Flex justifyContent="center" width="160px">
+              <Text fontSize="4" color="#8697a2">
                 Winner
               </Text>
             </Flex>
@@ -60,22 +60,22 @@ const Events = ({ account, events, categories, selectBet }) => {
             return (
               <Flex
                 key={event.id}
-                justifyContent='space-between'
-                alignItems='center'
-                px='4'
-                py='3'
-                borderWidth='2px'
-                borderStyle='solid'
-                borderColor='blue'
+                justifyContent="space-between"
+                alignItems="center"
+                px="4"
+                py="3"
+                borderWidth="2px"
+                borderStyle="solid"
+                borderColor="blue"
                 css={css({
                   ':not(:first-child)': {
                     borderTop: 0,
                   },
                 })}
               >
-                <Flex flexDirection='column'>
+                <Flex flexDirection="column">
                   <Text
-                    fontSize='5'
+                    fontSize="5"
                     opacity={isDisabled ? 0.6 : 1}
                     css={css({
                       cursor: isDisabled ? 'auto' : 'pointer',
@@ -95,8 +95,8 @@ const Events = ({ account, events, categories, selectBet }) => {
                   </Text>
 
                   <Text
-                    pt='2'
-                    fontSize='5'
+                    pt="2"
+                    fontSize="5"
                     opacity={isDisabled ? 0.6 : 1}
                     css={css({
                       cursor: isDisabled ? 'auto' : 'pointer',
@@ -118,8 +118,8 @@ const Events = ({ account, events, categories, selectBet }) => {
 
                 <Box>
                   <Button
-                    variant='secondary'
-                    width='78px'
+                    variant="secondary"
+                    width="78px"
                     disabled={isDisabled}
                     onClick={() => {
                       selectBet({
@@ -131,9 +131,9 @@ const Events = ({ account, events, categories, selectBet }) => {
                     {isDisabled ? '🔒' : odds.home}
                   </Button>
                   <Button
-                    variant='secondary'
-                    ml='2'
-                    width='78px'
+                    variant="secondary"
+                    ml="2"
+                    width="78px"
                     disabled={isDisabled}
                     onClick={() => {
                       selectBet({

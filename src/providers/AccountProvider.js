@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useMemo,
-  useState,
-  useContext,
-  useCallback,
-} from 'react'
+import { createContext, useMemo, useState, useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { useContainer } from './ContainerProvider'
@@ -60,9 +54,7 @@ const AccountProvider = ({ children }) => {
     [account, getAccount, addActiveBet]
   )
 
-  return (
-    <AccountContext.Provider value={value}>{children}</AccountContext.Provider>
-  )
+  return <AccountContext.Provider value={value}>{children}</AccountContext.Provider>
 }
 
 AccountProvider.propTypes = {
@@ -73,9 +65,7 @@ export const useAccount = () => {
   const accountContext = useContext(AccountContext)
 
   if (!accountContext) {
-    throw new Error(
-      'useAccount was called without being nested in AccountProvider'
-    )
+    throw new Error('useAccount was called without being nested in AccountProvider')
   }
 
   return accountContext
