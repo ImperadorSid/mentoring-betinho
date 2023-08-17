@@ -13,12 +13,12 @@ const accountSlice = createSlice({
   name: sliceName,
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getAccount.fulfilled, (state, action) => action.payload)
-    builder.addCase(addActiveBet.fulfilled, (state, action) => action.payload)
+    builder.addCase(getAccountThunk.fulfilled, (state, action) => action.payload)
+    builder.addCase(addActiveBetThunk.fulfilled, (state, action) => action.payload)
   },
 })
 
-const getAccount = createAsyncThunk(`${sliceName}/getAccount`, () => {
+const getAccountThunk = createAsyncThunk(`${sliceName}/getAccount`, () => {
   try {
     return fetchAccount()
   } catch (error) {
@@ -28,7 +28,7 @@ const getAccount = createAsyncThunk(`${sliceName}/getAccount`, () => {
   }
 })
 
-const addActiveBet = createAsyncThunk(`${sliceName}/addActiveBet`, async (bet, { getState }) => {
+const addActiveBetThunk = createAsyncThunk(`${sliceName}/addActiveBet`, async (bet, { getState }) => {
   try {
     const { account } = getState()
     const newAccount = {
@@ -50,8 +50,8 @@ const useAccount = () => {
   const dispatch = useDispatch()
 
   const account = useSelector((state) => state.account)
-  const getAccount = () => dispatch(getAccount())
-  const addActiveBet = (bet) => dispatch(addActiveBet(bet))
+  const getAccount = () => dispatch(getAccountThunk())
+  const addActiveBet = (bet) => dispatch(addActiveBetThunk(bet))
 
   return {
     account,

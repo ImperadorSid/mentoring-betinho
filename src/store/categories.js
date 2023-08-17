@@ -10,11 +10,11 @@ const categoriesSlice = createSlice({
   name: sliceName,
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getCategories.fulfilled, (state, action) => action.payload)
+    builder.addCase(getCategoriesThunk.fulfilled, (state, action) => action.payload)
   },
 })
 
-const getCategories = createAsyncThunk(`${sliceName}/getCategories`, () => {
+const getCategoriesThunk = createAsyncThunk(`${sliceName}/getCategories`, () => {
   try {
     return fetchCategories()
   } catch (error) {
@@ -28,7 +28,7 @@ const useCategories = () => {
   const dispatch = useDispatch()
 
   const categories = useSelector((state) => state.categories)
-  const getCategories = () => dispatch(getCategories())
+  const getCategories = () => dispatch(getCategoriesThunk())
 
   return {
     categories,

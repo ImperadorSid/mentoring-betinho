@@ -10,11 +10,11 @@ const eventsSlice = createSlice({
   name: sliceName,
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getEvents.fulfilled, (state, action) => action.payload)
+    builder.addCase(getEventsThunk.fulfilled, (state, action) => action.payload)
   },
 })
 
-const getEvents = createAsyncThunk(`${sliceName}/getEvents`, () => {
+const getEventsThunk = createAsyncThunk(`${sliceName}/getEvents`, () => {
   try {
     return fetchEvents()
   } catch (error) {
@@ -28,7 +28,7 @@ const useEvents = () => {
   const dispatch = useDispatch()
 
   const events = useSelector((state) => state.events)
-  const getEvents = () => dispatch(getEvents())
+  const getEvents = () => dispatch(getEventsThunk())
 
   return {
     events,
