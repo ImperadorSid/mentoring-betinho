@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useBet } from '../providers/BetProvider'
-import { useEvents } from '../providers/EventsProvider'
-import { useAccount } from '../providers/AccountProvider'
-import { useCategories } from '../providers/CategoriesProvider'
+import { useBet } from '../store/bet'
+import { useEvents } from '../store/events'
+import { useAccount } from '../store/account'
+import { useCategories } from '../store/categories'
 import { Box, Flex, Text, Heading, Container, Button, Events, PlaceBet } from './'
 
 const Home = () => {

@@ -1,21 +1,8 @@
 import PropTypes from 'prop-types'
-import ContainerProvider from './ContainerProvider'
-import AccountProvider from './AccountProvider'
-import EventsProvider from './EventsProvider'
-import CategoriesProvider from './CategoriesProvider'
-import BetProvider from './BetProvider'
+import { Provider as ReduxProvider } from 'react-redux'
+import store from '../store'
 
-const AllProviders = ({ children }) => (
-  <ContainerProvider>
-    <AccountProvider>
-      <EventsProvider>
-        <CategoriesProvider>
-          <BetProvider>{children}</BetProvider>
-        </CategoriesProvider>
-      </EventsProvider>
-    </AccountProvider>
-  </ContainerProvider>
-)
+const AllProviders = ({ children }) => <ReduxProvider store={store}>{children}</ReduxProvider>
 
 AllProviders.propTypes = {
   children: PropTypes.node.isRequired,
