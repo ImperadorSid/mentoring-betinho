@@ -28,23 +28,26 @@ const getAccountThunk = createAsyncThunk(`${sliceName}/getAccount`, () => {
   }
 })
 
-const addActiveBetThunk = createAsyncThunk(`${sliceName}/addActiveBet`, async (bet, { getState }) => {
-  try {
-    const { account } = getState()
-    const newAccount = {
-      balance: { amount: account.balance.amount - bet.stake },
-      activeBets: [...account.activeBets, bet],
+const addActiveBetThunk = createAsyncThunk(
+  `${sliceName}/addActiveBet`,
+  async (bet, { getState }) => {
+    try {
+      const { account } = getState()
+      const newAccount = {
+        balance: { amount: account.balance.amount - bet.stake },
+        activeBets: [...account.activeBets, bet],
+      }
+
+      await createActiveBet(newAccount)
+
+      return newAccount
+    } catch (error) {
+      console.error(`[${sliceName} store][addActiveBet]: ${error.message}`)
+
+      throw error
     }
-
-    await createActiveBet(newAccount)
-
-    return newAccount
-  } catch (error) {
-    console.error(`[${sliceName} store][addActiveBet]: ${error.message}`)
-
-    throw error
   }
-})
+)
 
 const useAccount = () => {
   const dispatch = useDispatch()
