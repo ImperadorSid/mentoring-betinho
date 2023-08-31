@@ -1,14 +1,10 @@
-import React from 'react'
 import { render } from '@testing-library/react'
-import { ThemeProvider } from 'styled-components'
-import theme from '../src/theme'
+import { renderHook } from '@testing-library/react-hooks'
+import userEvent from '@testing-library/user-event'
+import AllProviders from '../src/providers/AllProviders'
 
-const AllTheProviders = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
-}
-
-const customRender = (ui, options) => render(ui, { wrapper: AllTheProviders, ...options })
+const customRender = (ui, options) => render(ui, { wrapper: AllProviders, ...options })
+const customRenderHook = (hook, options) => renderHook(hook, { wrapper: AllProviders, ...options })
 
 export * from '@testing-library/react'
-
-export { customRender as render }
+export { customRender as render, customRenderHook as renderHook, userEvent }

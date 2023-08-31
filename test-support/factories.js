@@ -39,5 +39,25 @@ const factories = {
         away: 2.8,
       },
     },
+    {
+      id: 2,
+      categoryId: 2,
+      competitors: [
+        {
+          id: 3,
+          name: 'Rivers',
+          type: 'home',
+        },
+        {
+          id: 4,
+          name: 'Eagles',
+          type: 'away',
+        },
+      ],
+      odds: {
+        home: 2.1,
+        away: 0.8,
+      },
+    },
   ],
 }
