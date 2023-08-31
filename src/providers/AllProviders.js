@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types'
-import { Provider as ReduxProvider } from 'react-redux'
-import store from '../store'
+import ReduxProvider from './ReduxProvider'
+import ThemeProvider from './ThemeProvider'
 
-const AllProviders = ({ children }) => <ReduxProvider store={store}>{children}</ReduxProvider>
+const AllProviders = ({ children }) => (
+  <ReduxProvider>
+    <ThemeProvider>{children}</ThemeProvider>
+  </ReduxProvider>
+)
 
 AllProviders.propTypes = {
   children: PropTypes.node.isRequired,
